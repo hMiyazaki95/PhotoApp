@@ -1,0 +1,67 @@
+<!--registration.html – for guests to register accounts-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="../js/validation.js"></script>
+    <title>Registration</title>
+    <link rel="stylesheet" type="text/css" href="../css/post_style.css">
+    
+</head>
+<body>
+    
+        <!--Must have a section heading introducing the form-->
+        <h1>Registration Form</h1>
+    
+    <form action="registration.html" method="post" id="registration">
+
+        <div>
+        <!--Must ask user to input a username-->
+        <label for="uname">Username</label>
+        <input type="text" id="username" name="uname" required placeholder="Username:"/>
+        </div>
+
+        <div>
+        <!--Must ask user to input an email.-->
+        <label for="email">Email Address</label>
+        <input type="email" id="em" name="em" required placeholder="example@email.com"/>
+
+        </div>
+        <!--Must ask user to input a password-->
+        <!--Password input must be correct input type 
+            (i.e. when I type I should not see the
+        password)-->
+        <div>
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="password" required/>
+
+        </div>
+        
+        <div>
+        <!--Must ask user to input a confirm password-->
+        <label for="repass">Re-Enter Password</label>
+        <input type="password" id="repass" name="repass" required/>
+        </div>
+        
+        <div>
+        <!--Must ask user to accept they are 13+ years of age.-->
+        <label for="radio1">I am over 13 years of Age</label>
+        <input type="radio" id="radio1" name="radio1" value = "Yes" required>
+        </div>
+        
+        <div>
+        <!--Must ask users to accept TOS and Privacy rules-->
+        <a href="/">
+            <input type="checkbox" id="tc" name="tc">
+            <label for="tc">TOS and Privacy Rules:</label>
+        </a>
+        <!--Must have the user click a submit button to submit registration form.-->
+        <input type="submit" onclick = "myValidation()" value="Sign in"/>
+    <!--<input type="reset" value="Reset">-->
+        </div>
+    </form>
+</body>
+</html>

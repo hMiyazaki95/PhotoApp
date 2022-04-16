@@ -1,0 +1,12 @@
+# intelij
+out
+.idea
+
+# Visual Code
+.vscode
+.vs
+# MacOS meta-data
+.DS_Store
+
+# Netbeans
+nbproject

@@ -1,0 +1,61 @@
+<!--Must have document title
+o Must have a section heading introducing the form
+o Input fields are REQUIRED to be in form tags.
+o Must ask user to input a username
+o Must ask user to input a password.
+▪ Password input must be correct input type (i.e. when I type I should not see the
+password)
+o Must have the user click a submit button to submit login form.-->
+
+<form> 
+  <h1>Login</h1>
+  <div class="img_container" id="overlay">
+    <!-- icon is in the public folder-->
+    <img src="/public/icons8-user.gif" alt="showing image" /> 
+  </div>
+
+  <div class="container">
+    <label for="uname">
+    <b>Username</b>
+    </label>
+    <input 
+    	type="text" 
+        placeholder="Enter Username" 
+        name="uname" 
+        required>
+
+    <label 
+    	for="psw">
+        <b>Password</b>
+    </label>
+    <input 
+    	type="password" 
+        placeholder="Enter Password" 
+        name="psw" 
+        required>
+        
+    <button type="submit">Login</button>
+    <button type="reset" class="reset_btn"
+    >Reset</button>
+    <label>
+      <input 
+      	type="checkbox" 
+        checked="checked" 
+        name="remember"> Remember me
+    </label>
+    
+    <span 
+    class="psw">Forgot 
+    <a 
+      href="#"
+      >password?</a>
+  </span>
+  </div>
+
+  
+  
+  
+    
+  
+  </div>
+</form>

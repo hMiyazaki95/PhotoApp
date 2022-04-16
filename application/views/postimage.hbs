@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Must have document title-->
+    <title>PostingImage</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/post_style.css">
+</head>
+<body>
+    <header>
+   
+        <!--Must have a section heading introducing the form-->
+        <h1>Create a Post</h1>
+
+        <div>
+            <h2>
+                Please complete the form below to create a post:
+            </h2>
+        </div> 
+    </header>
+    <form>
+        <div class="imgcontainer">
+        <div>
+                <!--Must ask user to input a post Title-->
+                <div>
+                    <h3>
+                        <label for="title">Post Title</label>
+                        <input type="text" name="title" placeholder="Post Tittle" required/>
+                    </h3>
+                </div>
+                <div>
+                    <h3>
+                    <!--Must ask user to input a post Description-->
+                    <label for="text">Post Description</label>
+                        <div class="grow-wrap">
+                            <textarea 
+                                name="text" 
+                                id="text" 
+                                onInput="this.parentNode.dataset.replicatedValue = this.value"
+                                placeholder="Please describe your image"
+                                >
+                                
+                            </textarea>
+                
+                        </div>
+                    </h3>
+                </div>
+    
+        
+    
+            <!--Must ask user to input an image (or images, this is your choice)-->
+            <div> 
+                <h3>
+                    <label for="Image">Image</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </h3>
+                
+            </div>
+
+            <div>
+                <h3>
+                <!--Must ask user to accept Acceptable Use Policy for uploading images.-->
+                <input type="checkbox" /> Please agree to Acceptable Use Policy for uploading images
+                </h3>
+            </div>
+            
+                <input type="submit" value="Submit Your Post">
+        </div>
+    </form>
+ 
+</body>
+</html>
