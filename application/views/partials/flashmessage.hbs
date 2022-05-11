@@ -1,0 +1,17 @@
+<!-- flash message
+    get flash mesh to show up on front end
+    to do this, add handlebars template
+    adjustment needed on css
+-->
+
+<div id="flash-message">
+    {{#if message.error}} <!--error from flash value-->
+    <div class="alert alert-danger">
+        {{messages.error}}
+    </div>
+    {{else}}
+    <div class="alert alert-success">
+        {{messages.success}}
+    </div>
+    {{/if}}
+</div>

@@ -1,28 +1,36 @@
-<nav id="nav-bar">
-        <div id="brand" class="nav-items">
-          <a href="index" id="brand-anchor"><h3><span 
-          id="brand-text"><i style="margin-right: .2rem;">
-          I</i>PA</span></h3></a>
-        </div>
-
-        <div id="search-text" class="nav-search-box">
-        <input id="search-text" name="search-text"
-        type="text" placeholder="Search Images">
-        </div>
-
-        <div id="text-bar-icon">
+ <!--
+ <div id="text-bar-icon">
           <i id="sicon" class="fan fa-search nav-items"></i>
-        </div>
+  </div>-->
+<nav id="nav-bar" style="mergin: 0; display: flex; gap:8px;">
+        <div id="brand" class="nav-items" style="mergin: 0; display: flex; gap:8px;">
+        <a href="/" id="brand-anchor"><span id="brand-text"><i style="margin-right: .zrem;">i</i>PA</span></a>
+      
+  <!--
+        <a href="index" id="brand-anchor"><h3><span 
+          id="brand-text"><i style="margin-right: .2rem;">
+          I</i>PA</span></h3></a>-->
+        </div> 
 
+        
+          <input class="search-text-area"  id="search-text" 
+          placeholder="Example: Type 'Apple' " name="search-text" type="text">
+        <i i="text-bar-icon" class="fas fa-search nav-items"></i>
+        <button style="border-radius: 25px;"> Search</button>
+      
+        
         <a href="/postimage" id="post-button"
         class="nav-items anchor-buttons">Post
         </a>
 
-        <a href="/login" id="authenticate-button"
-        class="nav-items anchor-buttons">Log in
-        </a>
-
         <a href="/registration" id="link-button"
-        class="nav-items anchor-buttons">Do you need to register?
+        class="nav-items anchor-buttons">Register
         </a>
+        
+        {{#if logged}}
+        <a id="logout-button" class="authenticate-button nav-items anchor-buttons">LogOut</a>
+        {{else}}
+        <a href="/login" id="login-button" class="authenticate-button nav-items anchor-buttons">Login</a>
+        {{/if}}
+
 </nav>

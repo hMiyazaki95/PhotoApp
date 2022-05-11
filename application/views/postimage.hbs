@@ -10,7 +10,6 @@
 </head>
 <body>
     <header>
-   
         <!--Must have a section heading introducing the form-->
         <h1>Create a Post</h1>
 
@@ -20,26 +19,29 @@
             </h2>
         </div> 
     </header>
-    <form>
+    <form id="post-image" method="POST" enctype="multipart/form-data"
+    action='/posts/createPost'>
         <div class="imgcontainer">
         <div>
                 <!--Must ask user to input a post Title-->
                 <div>
                     <h3>
-                        <label for="title">Post Title</label>
-                        <input type="text" name="title" placeholder="Post Tittle" required/>
+                        <label for="post-title" class="tags post-label-title">Post Title</label>
+                        <input id="post-title" class="text-input post-input-title" type="text" placeholder="Post Tittle" name="title"  required/>
                     </h3>
                 </div>
                 <div>
                     <h3>
                     <!--Must ask user to input a post Description-->
-                    <label for="text">Post Description</label>
+                    <label for="post-desc" class="tags post-label-title">Post Description</label>
                         <div class="grow-wrap">
                             <textarea 
-                                name="text" 
-                                id="text" 
+                                id="post-desc"
+                                class="text-input post-input-desc" 
+                                type="text" 
                                 onInput="this.parentNode.dataset.replicatedValue = this.value"
-                                placeholder="Please describe your image"
+                                placeholder="Please describe your post"
+                                name="description" required
                                 >
                                 
                             </textarea>
@@ -53,8 +55,8 @@
             <!--Must ask user to input an image (or images, this is your choice)-->
             <div> 
                 <h3>
-                    <label for="Image">Image</label>
-                    <input type="file" id="img" name="img" accept="image/*">
+                    <label class="tags post-label-image">Image</label>
+                    <input class="text-input post-input-image" type="file" id="img-select" accept="image/*" name="uploadImage" required>
                 </h3>
                 
             </div>
@@ -62,13 +64,16 @@
             <div>
                 <h3>
                 <!--Must ask user to accept Acceptable Use Policy for uploading images.-->
-                <input type="checkbox" /> Please agree to Acceptable Use Policy for uploading images
+                <input type="checkbox" id="aup" required /><a href="#">Please agree to Acceptable Use Policy for uploading images</a>
                 </h3>
             </div>
             
                 <input type="submit" value="Submit Your Post">
+                
+                <button id="cancel" class="btn btn-danger post-cancel form-button" type="reset">
+                    Cancel
+                </button>
         </div>
     </form>
- 
 </body>
 </html>

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var isLoggedIn  = require('../middleware/routeprotectors').userIsLoggedIn;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,16 +10,24 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', (req,res,next) => {
-  res.render('login');
+  res.render('login', {title: "Log In"});
 })
-router.get('/postimage', (req,res,next) => {
-  res.render('postimage');
-})
+
+
 router.get('/registration', (req,res,next) => {
-  res.render('registration');
+  res.render('registration', {title:"Register"});
 })
+
+router.use('/postimage', isLoggedIn); // show only when users are logged in
+router.get('/postimage', (req,res,next) => {
+  res.render('postimage', {title:"Post Image"});
+})
+
+/*
 router.get('/viewpost', (req,res,next) => {
-  res.render('viewpost');
-})
+  res.render('viewpost', {title: "View Post"});
+})*/
+
+
 
 module.exports = router;

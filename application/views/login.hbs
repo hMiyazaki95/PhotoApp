@@ -7,7 +7,7 @@ o Must ask user to input a password.
 password)
 o Must have the user click a submit button to submit login form.-->
 
-<form> 
+<form id="login-form" method="POST" action="/users/login" enctype="application/x-www-form-urlencoded"> 
   <h1>Login</h1>
   <div class="img_container" id="overlay">
     <!-- icon is in the public folder-->
@@ -15,41 +15,31 @@ o Must have the user click a submit button to submit login form.-->
   </div>
 
   <div class="container">
-    <label for="uname">
+    <label for="username">
     <b>Username</b>
     </label>
     <input 
     	type="text" 
-        placeholder="Enter Username" 
-        name="uname" 
-        required>
+        placeholder="Enter Username" required name="username">
 
-    <label 
-    	for="psw">
-        <b>Password</b>
-    </label>
-    <input 
-    	type="password" 
-        placeholder="Enter Password" 
-        name="psw" 
-        required>
+    <label for="password"> <b>Password</b>  </label>
+    <input type="password" placeholder="Enter Password" 
+    required name="password">
         
-    <button type="submit">Login</button>
+    <button type="submit">Submit</button>
     <button type="reset" class="reset_btn"
     >Reset</button>
+    <!--
     <label>
       <input 
       	type="checkbox" 
         checked="checked" 
         name="remember"> Remember me
-    </label>
+    </label> -->
     
-    <span 
-    class="psw">Forgot 
-    <a 
-      href="#"
-      >password?</a>
-  </span>
+    <span class="password">Forgot 
+    <a href="#" >password?</a>
+    </span>
   </div>
 
   

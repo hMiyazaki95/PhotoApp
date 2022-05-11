@@ -7,12 +7,19 @@ const favicon = require('serve-favicon');
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const sessions = require('express-session');
+const mysqlSession = require('express-mysql-session')(sessions);
+const flash = require('express-flash');
+
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const postsRouter = require("./routes/posts"); // add this and mount the middleware from /routes/posts in app.use()
+
 //successPrint->/debug/debugprinters.js
 //errorPrint, successPrint 
-const{ requestPrint} = require('./helpers/debug/debugprinters');
+const errorPrint = require("./helpers/debug/debugprinters").errorPrint;
+const requestPrint = require('./helpers/debug/debugprinters').requestPrint;
 //var app = express();
 
 // handlebars template engine
@@ -25,13 +32,40 @@ app.engine(
     partialsDir: path.join(__dirname, "views/partials"), // where to look for partials
     extname: ".hbs", //expected file extension for handlebars files
     defaultLayout: "layout", //default layout for app, general template for all pages in app
-    helpers: {}, //adding new helpers to handlebars for extra functionality
+    helpers: { //adding new helpers to handlebars for extra functionality
+      emptyObject: (obj) =>  {
+        return !(obj.constructor === Object && Object.keys(obj).length == 0);
+      }
+        /**
+         * any helpers that allow for custom
+         * functionality can be added here
+         */
+    },
   })
 );
 
 // ORDER which define these middleware Does Matter !!!!
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
+
+
+// set configures mysqlSession
+var mysqlSessionStore = new mysqlSession(
+  {
+    /* using default options */
+  },
+  require('./config/database') //  new connection
+);
+
+app.use(sessions({
+  key: "csid",
+  secret: "this is a secret from csc 317",
+  store: mysqlSessionStore,
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(flash());
 app.set("view engine", "hbs");
 
 // "use" is middleware function 
@@ -47,9 +81,23 @@ app.use(cookieParser());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+
+app.use((req, res, next) => {
+  requestPrint(req.url);
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log(req.session); // session data
+  if(req.session.username){
+    res.locals.logged = true; //  this is always going to present on every response object when the session is initialized
+  }
+  next();
+})
+
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
-
+app.use('/posts', postsRouter); // route middleware from ./routes/posts.js
 /**
  * Catch all route, if we get to here then the 
  * resource requested could not be found.

@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="/public/css/post_style.css">
+    <script defer src="/public/js/frontendjs.js"></script>
+    <!--
+      <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="/public/css/all.min.css">
+      <link rel="stylesheet" type="text/css" href="/public/css/main.min.css">
+      <link rel="stylesheet" type="text/css" href="/public/css/formstyle.min.css">
+    -->
     
-</head>
+  </head>
   <!--<head>
     
     <title>{{title}}</title>
@@ -18,10 +23,30 @@
     <!-- div id="container was previously in the index.hbs
     but use it here so that it can be better managed with header, body, footer -->
     <div id="container">
+      {{log this}}
       {{> banner}}
       {{> nav}}
+      {{#if (emptyObject messages)}}
+      {{> flashmessage}}
+      {{/if}}
       {{{body}}}
       {{> footer}}
     </div>
+
+    {{#if logged}}
+      <script>
+        let ele = document.getElementById('logout-button');
+        if(ele){
+          ele.onclick = (even) => {
+            fetch('/users/logout', {
+              method:"POST"
+            })
+            .then((data) => {
+                location.replace('/')
+            })
+          }
+        }
+      </script>
+    {{/if}}
   </body>
-</html>
+
