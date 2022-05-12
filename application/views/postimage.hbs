@@ -7,6 +7,7 @@
     <!--Must have document title-->
     <title>PostingImage</title>
     <link rel="stylesheet" type="text/css" href="/public/css/post_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <header>
@@ -39,6 +40,7 @@
                                 id="post-desc"
                                 class="text-input post-input-desc" 
                                 type="text" 
+                                type="file"
                                 onInput="this.parentNode.dataset.replicatedValue = this.value"
                                 placeholder="Please describe your post"
                                 name="description" required
@@ -74,6 +76,43 @@
                     Cancel
                 </button>
         </div>
+
+        
     </form>
+     <script>
+            const _form = document.getElementById('post-image');
+            _form.onsubmit = function(event){
+                event.preventDefault();
+                let _body = new FormData(_form);
+                /*
+                fetch('/posts/createPost', {
+                    body:_body,
+                    method:"POST"
+                })
+                .then((data) => {
+                    console.log(data);
+                    return data.json();
+                })
+                .then((dataObject) => {
+                    console.log(dataAsObject);
+                    alert(dataAsObject.message);
+                    location.replace(dataAsObject.redirect);
+                })
+                .catch(err => console.log(err));
+                */
+
+                axios('/posts/createPost', {
+                    data:_body,
+                    method:"POST"
+                })
+                .then((data) => {
+                    console.log(data.data);
+                    alert(data.data.message);
+                    /*location.replace(data.redirect);*/
+                })
+                .catch(err => console.log(err));
+            }
+
+        </script>
 </body>
 </html>

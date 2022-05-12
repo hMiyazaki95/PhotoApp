@@ -23,4 +23,4 @@ if(flashElement){
     setFlashMessageFadeOut();
 }
 
-module.exports = router;
+/*module.exports = router;*/

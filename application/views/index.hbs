@@ -1,2 +1,37 @@
-<!-- <div id="main-content">
-</div>     --> 
+<div id="main-content">
+    {{#each results}}
+        {{> card this}}
+    {{/each}}
+</div> 
+{{!-- <script>
+function createCard(data){
+    let cardHTML = `<div id=post-${data.id} class="card"> \
+                        <img class="card-body"> \
+                        <div class="card-body"> \
+                            <p class="card-title">${data.title</p> \
+                            <p class="card-text"> {{data.description}}</p>    \
+                            <p href="/getPost/$(data.id) class="anchor-buttons">Details</a> \
+                        <div> \
+                    </div> ;
+    
+    return cardHTML;
+
+}
+
+let ele = document.getElement.getElementById('main-content');
+fetch('http://localhost:3000/postmgnt/getrecEight')
+    .then((data) => {
+        return data.json();
+    })
+    .then((json_data) => {
+        rows = json_data;
+        let HTMLtoAdd = '';
+        rows.forEach(element => {
+            HTMLtoAdd += createCard(element);
+        });
+        ele.innerHTML = HTMLtoAdd;
+    })
+    .catch((err) => {
+        throw err;
+    })
+</script> --}}

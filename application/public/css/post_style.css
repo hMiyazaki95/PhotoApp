@@ -155,7 +155,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: #4c6053b0;
+    /*background: #4c6053b0;*/
   }
   a#authenticate-button {
     margin-right: 10px;
@@ -165,7 +165,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: #4c6053b0;
+    /*background: #4c6053b0;*/
   }
   a:-webkit-any-link {
     color: -webkit-link;
@@ -174,7 +174,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: #4c6053b0;
+    /*background: #4c6053b0;*/
 }
   footer#footer {
     margin-top: 20px;
@@ -267,7 +267,17 @@ body {
   .banner-flex-item{
     color: white;
   }
-
+  #main-content{
+  grid-area: content;
+  padding-top: .35em;
+  padding-bottom: .35em;
+  display: grid;
+  gap: .2rem .2rem;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  }
 
 
 /* Change styles for span and cancel button on extra small screens */
