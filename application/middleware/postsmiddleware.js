@@ -3,7 +3,7 @@ const postMiddleware = {}
 
 postMiddleware.getRecentPosts = function(req, res, next) {
     let baseSQL = 'SELECT id, title, description, thumbnail, createdAt FROM posts ORDER BY createdAt DESC LIMIT 8';
-    db.execute(baseSQL,[])
+    db.query(baseSQL,[])
     .then(([results, fields])=>{
         //res.json(results)
         res.locals.results = results;

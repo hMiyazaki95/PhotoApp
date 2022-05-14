@@ -5,12 +5,12 @@
 -->
 
 <div id="flash-message">
-    {{#if message.error}} <!--error from flash value-->
+    {{#if messages.error}} <!--error from flash value-->
     <div class="alert alert-danger">
         {{messages.error}}
     </div>
     {{else}}
-    <div class="alert alert-success">
+    <div class="alert alert-success"> <!--this div will have text node-->
         {{messages.success}}
     </div>
     {{/if}}

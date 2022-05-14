@@ -207,7 +207,7 @@ router.post('/login', (req, res, next) => {
       errorPrint("user login failed");
       if(err instanceof UserError){
         errorPrint(err.getMessage());
-        req.flash('error', err.getMessages());
+        req.flash('error', err.getMessage());
         res.status(err.getStatus());
         res.redirect('/login'); // if any error refresh the login page
       }else{

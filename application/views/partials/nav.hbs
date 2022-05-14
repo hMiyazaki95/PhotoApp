@@ -2,35 +2,40 @@
  <div id="text-bar-icon">
           <i id="sicon" class="fan fa-search nav-items"></i>
   </div>-->
+  
+
 <nav id="nav-bar" style="mergin: 0; display: flex; gap:8px;">
         <div id="brand" class="nav-items" style="mergin: 0; display: flex; gap:8px;">
         <a href="/" id="brand-anchor"><span id="brand-text"><i style="margin-right: .zrem;">i</i>PA</span></a>
-      
+        
   <!--
         <a href="index" id="brand-anchor"><h3><span 
           id="brand-text"><i style="margin-right: .2rem;">
           I</i>PA</span></h3></a>-->
+          <!--crossorigin='anonymous'-->
         </div> 
 
         
+          
           <input class="search-text-area"  id="search-text" 
-          placeholder="Example: Type 'Apple' " name="search-text" type="text">
-        <i i="text-bar-icon" class="fas fa-search nav-items"></i>
-        <button style="border-radius: 25px;"> Search</button>
-      
+          placeholder="Example: Type 'test'" name="search-text" type="text">
+          <button id="search-button" class="fas fa-search nav-items" style="border-radius: 25px;"></button>
+          
         
-        <a href="/postimage" id="post-button"
-        class="nav-items anchor-buttons">Post
-        </a>
+        
+        
+          <a href="/postimage" id="post-button"
+          class="nav-items anchor-buttons">Post
+          </a>
 
-        <a href="/registration" id="link-button"
-        class="nav-items anchor-buttons">Register
-        </a>
+          <a href="/registration" id="link-button"
+          class="nav-items anchor-buttons">Register
+          </a>
         
         {{#if logged}}
-        <a id="logout-button" class="authenticate-button nav-items anchor-buttons">LogOut</a>
+        <a id="logout-button" rel="logout" class="authenticate-button nav-items anchor-buttons">LogOut</a>
         {{else}}
-        <a href="/login" id="login-button" class="authenticate-button nav-items anchor-buttons">Login</a>
+        <a href="/login" rel="login" id="login-button" class="authenticate-button nav-items anchor-buttons">Login</a>
         {{/if}}
-
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </nav>

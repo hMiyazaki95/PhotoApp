@@ -21,7 +21,9 @@ var storage = multer.diskStorage({
     }
 });
 
+
 var uploader = multer({storage: storage});
+
 
 
 router.post('/createPost', uploader.single("uploadImage"),(req, res, next) => {
@@ -74,11 +76,67 @@ router.post('/createPost', uploader.single("uploadImage"),(req, res, next) => {
     });
 });
 
+
+
+
 /*
 router.post('/createPost', uploader.single("uploadImage"),(req, res, next) => {
     console.log(req);
     res.send('');
 });*/
 
+//localhost:3000/posts/search?search=value // you ca encrypt this 
+// belows are async
+router.get('/search', async (req, res, next) => {
+    try{
+    let searchTerm = req.query.search;
+    if(!searchTerm){
+        //res.send(req.params)
+        res.send({
+            resultsStatus: "info",
+            message:"No search term given",
+            results: []
+
+        });
+    }else{
+        let baseSQL = `SELECT id, title, description, thumbnail, concat_ws('', title,
+        description) AS haystack
+        FROM posts
+        HAVING haystack like ?;`;
+        let sqlReadySearchTerm = "%" + searchTerm + "%";
+        let [results, fields] = await db.query(baseSQL, [sqlReadySearchTerm]);
+        if(results && results.length){
+            res.send({
+                resultsStatus:"info",
+                message: `${results.length} results found`,
+                results: results
+            });
+        }else{
+                // if we don't have data
+                // ` or '?
+                // this code coming from the postsmiddleware.js
+            let [results, fields] = await db.query(`SELECT id, title, description, thumbnail, createdAt FROM posts 
+            ORDER BY createdAt DESC LIMIT 8`,[]);
+            
+                res.send({
+                    resultsStatus:"info",
+                    message: "No results where found for your search but here are the 8 \
+                    most recent posts",
+                    results: results,
+                });
+            } 
+        }
+    }catch (err){
+        next(err)
+    }
+});
+/* async function sync
+async function test(){
+    try{
+        async events
+    }catch (err){
+        // handle err
+    }
+}*/
 
 module.exports = router;

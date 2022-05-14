@@ -1,0 +1,47 @@
+<!--
+Must have a section for the post’s post title.
+Must have a section for the post’s post author
+Must have a section for the post’s post creation time.
+Must have a section for the post’s image
+-->
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image post</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/post_style.css">
+</head>
+
+<body>
+    <div id="post-container" class="flex-container">
+        <img id="image-post-image" src="/{{currentPost.photopath}}" >
+            <div id="image-post-image" >
+                <div id="info"> <!-- src="/{{currentPost.photopath}}" -->
+                    <header  id="image-post-title">
+                        <h2 id="image-post-title-text">{{currentPost.title}}</h2>
+                    </header>
+                    <div id="image-post-author" class="info-tags">{{currentPost.username}}</div>
+                    <div id="image-post-date" class="info-tags">{{currentPost.createdAt}}</div>
+                    <div id="image-post-desc" class="info-tags" style="display: grid;justify-content: center;">{{currentPost.description}}</div>
+                </div>
+                 <div id="message">
+                        <header id="comment-title">
+                            <h2>Comments</h2>
+                        </header>
+                        <div id="message-list">
+                        <textarea id="comment-box-text"></textarea>
+                        <i id="comment-box-button" class="fa fa-comment" aria-hidden="true" style="text-align: center;"></i>
+                        </div>
+                </div>
+            </div>
+        </div>
+            
+            
+    </div>
+
+    <!--<img src="img post.jp">-->
+    </body>
+
