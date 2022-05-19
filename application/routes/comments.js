@@ -19,14 +19,12 @@ router.post('/create', (req, res, next) => {
 
     }else{
     let { comment, postId } = req.body;
-    let username = 'Hajime02';// this is for test
-   // let username = req.session.username;
-    let fk_authorid = 18; // this  is for test
-    //let userId = req.session.userId;
+    //let username = 'Hajime02';// this is for test
+    let username = req.session.username;
+    //let userId = 18; // this  is for test
+    let userId = req.session.userId;
     
-
-    
-    create(fk_authorid, postId, comment)
+    create(userId, postId, comment)
     .then((wasSuccessful) => {
         if(wasSuccessful !== -1){
             successPrint(`comment was created for ${username}`);
