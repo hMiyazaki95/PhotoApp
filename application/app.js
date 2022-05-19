@@ -15,7 +15,7 @@ const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts"); // add this and mount the middleware from /routes/posts in app.use()
-
+const commentRouter = require('./routes/comments');
 //successPrint->/debug/debugprinters.js
 //errorPrint, successPrint 
 const errorPrint = require("./helpers/debug/debugprinters").errorPrint;
@@ -98,6 +98,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 app.use('/posts', postsRouter); // route middleware from ./routes/posts.js
+app.use('/comments', commentRouter);
 /**
  * Catch all route, if we get to here then the 
  * resource requested could not be found.
@@ -105,6 +106,10 @@ app.use('/posts', postsRouter); // route middleware from ./routes/posts.js
  * 
  */
 // if I add this method in the 
+
+
+// deleted on video Creating Stub Create Comment Route
+/*
 app.use((req,res,next) => {
   //how to pass data into middleware 2 from middleware 1 is by using 
   //"next()" without parameter
@@ -115,8 +120,8 @@ app.use((req,res,next) => {
   next(createError(404, `The route ${req.method} : ${req.url} does not exist.`));
   //console.log(x); it helps when you debug
   /*console.log(`Method ${req.method}, Route: ${req.erl}`);
-  next();*/
-})
+  next();
+})*/
   
 
 /**

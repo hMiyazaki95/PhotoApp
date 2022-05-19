@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database');
+//var db = require('../config/database');
 var { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 var sharp = require('sharp');
 var multer = require('multer');
 var crypto = require('crypto'); 
 var PostError  = require('../helpers/error/PostError');
 const { response } = require('express');
+var PostModel = require('../models/Posts');
+
+//const {route } = require(".");
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb){ // call distination which defin
@@ -21,10 +24,7 @@ var storage = multer.diskStorage({
     }
 });
 
-
-var uploader = multer({storage: storage});
-
-
+var uploader = multer({ storage: storage});
 
 router.post('/createPost', uploader.single("uploadImage"),(req, res, next) => {
     let fileUploaded = req.file.path;
@@ -49,18 +49,22 @@ router.post('/createPost', uploader.single("uploadImage"),(req, res, next) => {
     .resize(200)
     .toFile(destinationOfThumbnail)
     .then(() => {
-        let baseSQL = `INSERT INTO posts (title, description, photopath, thumbnail, createdAt, fk_userId) VALUE (?,?,?,?, now(),?);;`;
-
-        return db.execute(baseSQL,[title, description, fileUploaded, destinationOfThumbnail, fk_userId]);
+        return PostModel.create(
+        title, 
+        description, 
+        fileUploaded, 
+        destinationOfThumbnail, 
+        fk_userId,
+        );
     })
-    .then(([results, fields]) => {
-        if(results && results.affectedRows){
+    .then((postWasCreated) => {
+        if(postWasCreated){
             req.flash('success', "Your post was created successfully");
-            //res.redirect('/');
-            res.json({status: "OK", message:"post was created", "redirect": "/"});
+            res.redirect('/');
+            //res.json({status: "OK", message:"post was created", "redirect": "/"});
         }else{
-            //throw new PostError('Post could not be created!1', '/postimage', 200);
-            resp.json({status: "OK", message:"post was not created", "redirect": "/postimage"});
+            throw new PostError('Post could not be created!1', '/postimage', 200);
+            //resp.json({status: "OK", message:"post was not created", "redirect": "/postimage"});
         }   
     })
     .catch((err) => {
@@ -71,7 +75,7 @@ router.post('/createPost', uploader.single("uploadImage"),(req, res, next) => {
             res.redirect(err.getRedirectURL());
         }else{
             response.json();
-            //next(err);
+            next(err);
         }
     });
 });
@@ -95,39 +99,30 @@ router.get('/search', async (req, res, next) => {
         res.send({
             resultsStatus: "info",
             message:"No search term given",
-            results: []
+            results: [],
 
         });
     }else{
-        let baseSQL = `SELECT id, title, description, thumbnail, concat_ws('', title,
-        description) AS haystack
-        FROM posts
-        HAVING haystack like ?;`;
-        let sqlReadySearchTerm = "%" + searchTerm + "%";
-        let [results, fields] = await db.query(baseSQL, [sqlReadySearchTerm]);
+        let results = await PostModel.search(searchTerm);
         if(results && results.length){
             res.send({
-                resultsStatus:"info",
                 message: `${results.length} results found`,
-                results: results
+                results: results,
             });
         }else{
                 // if we don't have data
                 // ` or '?
                 // this code coming from the postsmiddleware.js
-            let [results, fields] = await db.query(`SELECT id, title, description, thumbnail, createdAt FROM posts 
-            ORDER BY createdAt DESC LIMIT 8`,[]);
-            
+            let results = await PostModel.getNRecentPosts(8);
                 res.send({
-                    resultsStatus:"info",
-                    message: "No results where found for your search but here are the 8 \
+                    message: "No results were found for your search but here are the 8\
                     most recent posts",
                     results: results,
                 });
             } 
         }
     }catch (err){
-        next(err)
+        next(err);
     }
 });
 /* async function sync
