@@ -4,7 +4,7 @@ var PostModel = {};
 
 PostModel.create = (title, description, photoPath, thumbnail, fk_userId) => {
     let baseSQL = `INSERT INTO posts (title, description, 
-        photopath, thumbnail, createdAt, fk_userid) 
+        photopath, thumbnail, createdAt, fk_userId) 
         VALUE (?,?,?,?, now(),?);;`;
 
         return db.query(baseSQL, 
@@ -20,7 +20,7 @@ PostModel.create = (title, description, photoPath, thumbnail, fk_userId) => {
         .catch((err) => Promise.reject(err));
 };
 
-PostModel.search = (search) => {
+PostModel.search = (searchTerm) => {
     let baseSQL = `SELECT id, title, description, thumbnail, concat_ws(' ',
      title, description) AS haystack
      FROM posts HAVING haystack like ?;`;
@@ -56,7 +56,7 @@ PostModel.getPostById = (postId) => { // postId in the video but maybe needs to 
     `SELECT u.username, p.title, p.description, p.photopath, p.createdAt 
     FROM users u 
     JOIN posts p 
-    ON u.id = fk_userid 
+    ON u.id = fk_userId 
     WHERE p.id=?;`;
   // maybe fk_userId or fk_userid
     

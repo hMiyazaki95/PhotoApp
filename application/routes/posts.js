@@ -104,15 +104,12 @@ router.get('/search', async (req, res, next) => {
         });
     }else{
         let results = await PostModel.search(searchTerm);
-        if(results && results.length){
+        if(results.length){
             res.send({
                 message: `${results.length} results found`,
                 results: results,
             });
         }else{
-                // if we don't have data
-                // ` or '?
-                // this code coming from the postsmiddleware.js
             let results = await PostModel.getNRecentPosts(8);
                 res.send({
                     message: "No results were found for your search but here are the 8\
