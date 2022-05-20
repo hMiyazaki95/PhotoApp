@@ -10,18 +10,20 @@ Please follow the instructions below and fill in the information requested when 
 
 |               | Information   |
 |:-------------:|:-------------:|
-| Student Name  | name-here     |
-| Student ID    | id-here       |
-| Student Email | email-here    |
+| Student Name  | Hajime Miyazaki     |
+| Student ID    | 922402751       |
+| Student Email | hmiyazaki@sfsu.edu    |
 
 
 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. cd csc317-termproject-hmiyazaki95
+2. cd application
+3. npm start
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. localhost:3000 in the google chrome 
+2.  click the buttons in nav bar section to test if all 
+    features are functioning.
