@@ -115,7 +115,7 @@ div.TOS_and_submit{
     margin: 10px;
     resize: none;
     overflow: scroll;
-    border: 4px solid #4c6053
+    border: 4px solid #cc8000b8
   }
 
   button {
@@ -231,7 +231,7 @@ div.TOS_and_submit{
   #banner{
     width:100%;
     height: 20%;
-    background-color: #4c6053b0;
+    background-color: #1a2532e3;
     grid-area: banner;
     background-color: text;
     display: flex;
@@ -311,7 +311,7 @@ div.TOS_and_submit{
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 1fr;
-  background-color: #66cdaa9c;
+  background-color: #1a25329e;
   }
   
   p.anchor-buttons:hover {
@@ -351,7 +351,6 @@ div.TOS_and_submit{
     flex-direction: column;
     flex-wrap: nowrap;
     margin: 5px auto;
-    border: 2px solid #cc8000b8;
     display: flex;
   }
   #post-info{
@@ -443,7 +442,7 @@ div.TOS_and_submit{
     margin: 0.25rem;
     height: 30px;
     line-height: 2;
-    background-color: #1a2532;
+    background-color: #cc8000b8;
     color: white;
     font-size: 1.5rem;
     border: 0.0625rem solid white;
@@ -507,7 +506,7 @@ div#image-post-desc {
   display: flex;
   flex-flow: column-reverse nowrap;
   scroll-behavior: smooth;
-  border: 1px solid #cccccc;
+  border: 1px solid #cc8000b8;
   box-shadow: -2px 2px 4px 4px e0e0e0;
   border-radius: .35rem;
   width: 500px;
@@ -542,6 +541,9 @@ div[id^=message-]{
   justify-self: center;
 
 
+}
+div#comment-container {
+  color: #cc8000b8;
 }
 .data-posted{
   grid-area: createdAt;
