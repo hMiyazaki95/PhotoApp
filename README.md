@@ -27,3 +27,17 @@ Please follow the instructions below and fill in the information requested when 
 1. localhost:3000 in the google chrome 
 2.  click the buttons in nav bar section to test if all 
     features are functioning.
+
+    login:
+    My login button will be turn into logout after user logged in successfully and click the login button again
+
+    registration:
+    Please fill the information and then click submit.
+
+    Search:
+    search is not functioning but I assume the problem was json file and my database. After I deleted the data in my db inn order to fix error for foreign key and create comments table on my db.
+
+    Comments:
+    comments codes should be working but I was not able to fix the error for null space in comments table since I was not able to use the powershell to initialize the first position at each column sections of the comments table.
+
+
